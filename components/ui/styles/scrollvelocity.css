@@ -1,0 +1,30 @@
+.parallax {
+    position: relative;
+    overflow: hidden;
+    padding: 12px 0;
+}
+
+.scroller {
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Skill box style */
+
+.skill-pill {
+    flex-shrink: 0;
+    border: 1px solid #27272a;
+    background: rgba(24, 24, 27, 0.6);
+    color: #e4e4e7;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    transition: all 0.15s ease;
+}
+
+.skill-pill:hover {
+    border-color: #52525b;
+    background: rgba(39, 39, 42, 0.8);
+}
