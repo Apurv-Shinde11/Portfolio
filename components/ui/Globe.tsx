@@ -7,7 +7,7 @@ const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
 export default function MumbaiGlobe() {
 
-    const globeRef = useRef<any>();
+    const globeRef = useRef<any>(null);
 
     const mumbai = {
         lat: 19.0760,
