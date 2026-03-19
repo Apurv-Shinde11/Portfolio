@@ -52,9 +52,10 @@ export default function CountUp({
     useEffect(() => {
         const unsubscribe = springValue.on("change", (latest) => {
             if (ref.current) {
-                ref.current.textContent = formatValue(Number(latest));
-            }
-        });
+                function formatValue(value: number | string) {const num = Number(value);
+                                                              return num.toLocaleString();
+                                                             }
+            });
 
         return () => unsubscribe();
     }, [springValue, formatValue]);
