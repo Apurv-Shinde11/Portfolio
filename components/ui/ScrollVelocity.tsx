@@ -11,14 +11,15 @@ import {
     useAnimationFrame,
 } from "motion/react";
 
-function useElementWidth(ref: React.RefObject<HTMLDivElement>) {
+// ✅ FIXED: Proper typing for nullable ref
+function useElementWidth(ref: React.RefObject<HTMLDivElement | null>) {
     const [width, setWidth] = useState(0);
 
     useLayoutEffect(() => {
         function updateWidth() {
-            if (ref.current) {
-                setWidth(ref.current.offsetWidth);
-            }
+            // ✅ Safe null check
+            const width = ref.current ? ref.current.offsetWidth : 0;
+            setWidth(width);
         }
 
         updateWidth();
@@ -78,7 +79,8 @@ export default function ScrollVelocity({
         { clamp: false }
     );
 
-    const copyRef = useRef<HTMLDivElement>(null);
+    // ✅ Correct ref typing
+    const copyRef = useRef<HTMLDivElement | null>(null);
 
     const copyWidth = useElementWidth(copyRef);
 
