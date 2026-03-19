@@ -136,7 +136,7 @@ export default function Hero() {
 
             {/* Resume hint */}
             <p className="text-xs text-zinc-500 pt-1">
-              Resume available inside the About section.
+              Resume available inside the About Me button.
             </p>
 
           </div>

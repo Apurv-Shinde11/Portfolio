@@ -92,6 +92,16 @@ export default function AnalysisProjects() {
 
             </div>
 
+            {/* Back to Home Button */}
+            <div className="mt-20 flex justify-center">
+                <Link
+                    href="/"
+                    className="rounded-full border border-zinc-700 px-6 py-2 text-sm text-zinc-300 transition hover:border-blue-400 hover:text-blue-400"
+                >
+                    ← Back to Home
+                </Link>
+            </div>
+
         </main>
     );
 }
