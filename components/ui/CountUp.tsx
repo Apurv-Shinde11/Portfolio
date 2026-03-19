@@ -52,7 +52,7 @@ export default function CountUp({
     useEffect(() => {
         const unsubscribe = springValue.on("change", (latest) => {
             if (ref.current) {
-                ref.current.textContent = formatValue(latest);
+                ref.current.textContent = formatValue(Number(latest));
             }
         });
 
