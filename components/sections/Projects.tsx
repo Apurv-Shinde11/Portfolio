@@ -12,10 +12,6 @@ export default function Projects() {
                 <h2 className="text-3xl font-semibold tracking-tight">
                     Projects
                 </h2>
-
-                <p className="mt-3 text-zinc-400">
-                    Two directions of my work: analytics systems and software-driven data solutions.
-                </p>
             </div>
 
             {/* Project Type Cards */}
