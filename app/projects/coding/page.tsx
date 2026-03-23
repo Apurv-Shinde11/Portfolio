@@ -14,7 +14,7 @@ const projects = [
             "An automation framework designed to streamline the preparation and processing of Income Tax Returns by structuring financial data inputs and automating repetitive compliance tasks. The system focuses on improving efficiency, reducing manual effort, and organizing financial information for faster tax filing workflows.",
         tools: ["Python", "Process Automation", "Compliance data handling", "Data Handling", "Workflow Automation", "Financial Operations"],
         slug: "itr-automation",
-        github: "https://github.com/yourusername/itr-automation", // UPDATE
+        github: "", // UPDATE
     },
     {
         title: "Sports Recommendation System",
@@ -22,7 +22,7 @@ const projects = [
             "A Python-based recommedation tool that recommends sports based on user inputs, and live camera analysis. The recommendation is a list of sports that are suitable according to users body dimensions. Final output - most suitable sport to pursue.",
         tools: ["Python", "NumPy", "OpenCV", "Computer Vision", "Recommendation Systems", "StreamLit"],
         slug: "recommendation-system",
-        github: "https://github.com/yourusername/recommendation-system", // UPDATE
+        github: "", // UPDATE
     },
     {
         title: "Portfolio Website",
@@ -37,7 +37,7 @@ const projects = [
             "Data Structure & Algorithm based based experimentation that uses Dijkstra's algorithm to determine shortest air routes between two airports. This helps optimize time, fuel consumption, and operational efficiency for airlines and travelers.",
         tools: ["Python", "Data Structure and Algorithm", "StreamLit", "Aviation"],
         slug: "flight-planning-optimizer",
-        github: "https://github.com/yourusername/flight-planning-optimizer", // UPDATE
+        github: "https://github.com/Apurv-Shinde11/Air-Travel-Optimization",
     },
     {
         title: "Heart Risk Prediction Model",
@@ -45,7 +45,7 @@ const projects = [
             "An algorithm that predicts the risk of heart disease based on patient data, including age, cholesterol levels, blood pressure, and lifestyle factors. The model uses machine learning techniques to analyze patterns in the data and provide risk assessments to support early intervention and preventive care with data-backed accuracy.",
         tools: ["Python", "Predictive Model", "Medical Data Handling & Analysis", "Machine Learning"],
         slug: "heart-risk-prediction-model",
-        github: "https://github.com/yourusername/heart-risk-prediction", // UPDATE
+        github: "https://github.com/Apurv-Shinde11/Heart-Disease-XGBoost",
     },
 ];
 
