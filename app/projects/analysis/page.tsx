@@ -7,15 +7,14 @@ const projects = [
             "A web-based financial automation tool that generates structured balance sheets from live company data. The application fetches financial statements, processes key metrics across Assets, Liabilities, and Equity, and renders a clean interactive output through a deployed web interface.",
         tools: ["Python", "GitHub", "Web app deployment", "Financial Data Analysis", "Data Processing"],
         slug: "automated-balance-sheet-generator",
-        github: "https://github.com/yourusername/automated-balance-sheet-generator", // UPDATE
+        github: "https://github.com/Apurv-Shinde11/Balance-Sheet-Generator",
     },
     {
-        title: "Market Research & Competitive Intelligence Analysis",
+        title: "Market Research & Competitive Analysis",
         description:
-            "A structured market analysis project that evaluates industry trends, competitive positioning, and business opportunities using data-driven research methods. The project synthesizes qualitative and quantitative insights to support strategic decision-making and product-market evaluation.",
+            "A structured market analysis document that evaluates industry trends, competitive positioning, and business opportunities using data-driven research methods. The project synthesizes qualitative and quantitative insights to support strategic decision-making and product-market evaluation.",
         tools: ["Business Intelligence", "Market Research", "Competitive Analysis", "Data Interpretation", "Strategic Analysis", "Research Methodology"],
         slug: "market-research",
-        github: "https://github.com/yourusername/market-research", // UPDATE
     },
     {
         title: "Feedback Analysis to Drive Airline Services",
@@ -23,15 +22,14 @@ const projects = [
             "Feedback to uncover trends in satisfaction, delays, cabin service, and overall experience. The dashboard provides clear insights to help airlines focus on what truly matters to passengers.",
         tools: ["Data Analysis", "Power BI", "Data Visualization", "Customer Feedback Analysis"],
         slug: "feedback-analysis",
-        github: "https://github.com/yourusername/feedback-analysis", // UPDATE
     },
     {
-        title: "Bank Operation Workflow Analytics",
+        title: "Bank Operation Workflow Analysis",
         description:
             "Developed an interactive operations analytics dashboard to monitor 12+ key workforce and operational KPIs, including transaction volume, SLA breaches, backlog aging, agent productivity, resolution time, and workload distribution. The system integrated multiple datasets and automated recurring performance reports, enabling teams to detect operational bottlenecks, track productivity trends, and reduce manual reporting effort by 30% while improving decision-making visibility.",
         tools: ["Power BI", "Data Visualization", "Operational & Workforce Analytics", "KPI Framework design", "Business Intelligence", "Data Integration", "Performance Monitoring", "Process Optimization"],
         slug: "bank-operation-workflow-analytics",
-        github: "https://github.com/yourusername/bank-operation-workflow-analytics", // UPDATE
+        github: "https://github.com/Apurv-Shinde11/Banking-Operations-DashBoard",
     },
     {
         title: "Macro Economic Intelligence",
@@ -39,7 +37,6 @@ const projects = [
             "An interactive dashboard that analyzes key macroeconomic indicators such as interest rates, inflation, and liquidity trends to provide structured insights into potential movements across major asset classes including equities, bonds, and gold.",
         tools: ["Economic Analysis", "Data Visualization", "Python", "Pandas", "Economic Indicators", "API Integration"],
         slug: "macro-economic-intelligence",
-        github: "https://github.com/yourusername/macro-economic-intelligence", // UPDATE
     },
 ];
 
