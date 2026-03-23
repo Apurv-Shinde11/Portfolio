@@ -91,7 +91,7 @@ export default function Collaboration() {
                     </p>
 
                     <p className="text-zinc-400">
-                        Mumbai, India — 400096
+                        Mumbai, India — 400094
                     </p>
 
                     {/* Social icons */}
