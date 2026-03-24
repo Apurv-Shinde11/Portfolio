@@ -113,7 +113,7 @@ export default function MyWorld() {
                             </a>
 
                             <a
-                                href="https://instagram.com/YOUR_HANDLE"
+                                href="https://www.instagram.com/_apurvshinde_/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex flex-col items-center gap-2 text-white hover:text-pink-400 transition p-4 rounded-lg hover:bg-zinc-800/60"
