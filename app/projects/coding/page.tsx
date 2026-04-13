@@ -6,7 +6,7 @@ const projects = [
         description:
             "A Python-based model designed to study macroeconomic regimes and their impact on asset behavior. The model synthesizes macro indicators, market trends, and competitive intelligence to identify how different economic environments influence investment strategies and asset performance.",
         tools: ["Python", "Pandas", "APIs", "Financial markets", "Macroeconomic Analysis"],
-        slug: "economic-research",
+        slug: "economic-research-model",
     },
     {
         title: "Income Tax Return (ITR) automation system",
