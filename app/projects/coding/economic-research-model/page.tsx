@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function EconomicResearch() {
+export default function EconomicResearchModel() {
     return (
         <main className="mx-auto max-w-4xl px-6 py-24">
 
