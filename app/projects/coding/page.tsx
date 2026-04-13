@@ -2,11 +2,11 @@ import Link from "next/link";
 
 const projects = [
     {
-        title: "Asset Intelligence Model",
+        title: "Economic Research Model",
         description:
             "A Python-based model designed to study macroeconomic regimes and their impact on asset behavior. The model synthesizes macro indicators, market trends, and competitive intelligence to identify how different economic environments influence investment strategies and asset performance.",
         tools: ["Python", "Pandas", "APIs", "Financial markets", "Macroeconomic Analysis"],
-        slug: "asset-intelligence",
+        slug: "economic-research",
     },
     {
         title: "Income Tax Return (ITR) automation system",
