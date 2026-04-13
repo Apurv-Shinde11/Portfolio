@@ -7,7 +7,7 @@ export default function AssetIntelligence() {
             {/* Title */}
             <div className="mb-12">
                 <h1 className="text-4xl font-semibold tracking-tight">
-                    Asset Intelligence Model
+                    Economic Research Model
                 </h1>
                 <p className="mt-4 text-zinc-400">
                     A macro-driven system designed to analyze how different economic environments influence asset behavior and investment strategy.
@@ -18,9 +18,21 @@ export default function AssetIntelligence() {
             <section className="mb-12">
                 <h2 className="text-2xl font-semibold">The Problem</h2>
                 <p className="mt-4 text-zinc-400 leading-relaxed">
-                    Financial markets are heavily influenced by macroeconomic factors such as interest rates, inflation, and liquidity cycles.
-                    However, most early investors lack a structured way to interpret these signals and understand their impact on different asset classes.
-                    This leads to fragmented decision-making and inconsistent investment strategies.
+                    India has 400+ registered PMS firms and thousands of wealth managers — most relying on manual research, analyst intuition, and lagging reports.
+                </p>
+                <p className="mt-4 text-zinc-400 leading-relaxed">
+                    Bloomberg and Refinitiv terminals cost ₹15–25L per seat annually — completely out of reach for sub-₹1,000 Cr AUM firms.
+                </p>
+                <p className="mt-4 text-zinc-400 leading-relaxed">
+                    India-specific economic signals — RBI data, GST trends, FII flows, sector PMIs — are scattered across dozens of sources with no unified, actionable view.
+                </p>
+            </section>
+
+            {/* Our Solution */}
+            <section className="mb-12">
+                <h2 className="text-2xl font-semibold">Our Solution</h2>
+                <p className="mt-4 text-zinc-400 leading-relaxed">
+                    The Model aggregates macro indicators, sector data, and global signals into a single platform. Our Python-based algorithm processes data continuously, surfaces actionable insights, and generates ready-to-use research narratives — delivered through a clean dashboard and automated reports.
                 </p>
             </section>
 
@@ -28,7 +40,7 @@ export default function AssetIntelligence() {
             <section className="mb-12">
                 <h2 className="text-2xl font-semibold">System Overview</h2>
                 <p className="mt-4 text-zinc-400 leading-relaxed">
-                    The Asset Intelligence Model is a Python-based analytical system that synthesizes macroeconomic indicators,
+                    The Research Model is a Python-based analytical system that synthesizes macroeconomic indicators,
                     market trends, and contextual data to classify economic regimes and evaluate how assets behave under each regime.
                 </p>
             </section>
@@ -70,6 +82,9 @@ export default function AssetIntelligence() {
                     <li>• Maps asset performance to macro conditions</li>
                     <li>• Supports more structured and informed investment decisions</li>
                 </ul>
+                <p className="mt-4 text-zinc-400 leading-relaxed">
+                    India's wealth management industry is growing at a pace that demands better research infrastructure — yet the tools available are either too expensive, too generic, or built for Western markets. EconIntel is the missing layer: affordable, India-specific, and algorithmic. We have the prototype. We have the market. We are looking for the right partners to help us scale it.
+                </p>
             </section>
 
             {/* Tech Stack */}
