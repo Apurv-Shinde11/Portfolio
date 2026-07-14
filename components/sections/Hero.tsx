@@ -69,17 +69,18 @@ export default function Hero() {
 
             <p className="text-lg flex items-center" style={{ color: "var(--foreground-muted)" }}>
               <span className="mr-2">I am into</span>
-              <TextType
-                text={["Artificial Intelligence","Data Analysis","Entrepreneurship","Finance","Geopolitics","Cycling"]}
-                typingSpeed={60}
-                pauseDuration={2000}
-                deletingSpeed={40}
-                loop={true}
-                showCursor={true}
-                cursorCharacter="|"
-                className="font-medium"
-                style={{ color: "var(--foreground)" }}
-              />
+              <span style={{ color: "var(--foreground)" }}>
+                <TextType
+                  text={["Artificial Intelligence","Data Analysis","Entrepreneurship","Finance","Geopolitics","Cycling"]}
+                  typingSpeed={60}
+                  pauseDuration={2000}
+                  deletingSpeed={40}
+                  loop={true}
+                  showCursor={true}
+                  cursorCharacter="|"
+                  className="font-medium"
+                />
+              </span>
             </p>
 
             <div className="flex items-center gap-4 pt-4">
