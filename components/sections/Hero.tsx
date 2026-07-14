@@ -11,7 +11,7 @@ function LinkedInIcon(props: React.SVGProps<SVGSVGElement>) {
       <rect x="3" y="3" width="18" height="18" rx="2" className="fill-current" />
       <path
         d="M8.1 17.25V10.5h-2.2v6.75h2.2Zm-1.1-7.7c.75 0 1.36-.6 1.36-1.35 0-.77-.61-1.37-1.36-1.37-.77 0-1.37.6-1.37 1.37 0 .75.6 1.35 1.37 1.35ZM18.9 17.25V13.4c0-1.93-1.03-2.83-2.4-2.83-1.1 0-1.59.6-1.86 1.03v-1.1h-2.2v6.75h2.2v-3.7c0-.98.57-1.6 1.37-1.6.82 0 1.2.52 1.2 1.6v3.7h2.69Z"
-        className="fill-zinc-900"
+        style={{ fill: "var(--hero-bg)" }}
       />
     </svg>
   );
@@ -32,75 +32,61 @@ function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <rect x="2" y="2" width="20" height="20" rx="6" className="fill-current" />
-      <circle cx="12" cy="12" r="4" className="fill-zinc-900" />
-      <circle cx="17.5" cy="6.5" r="1.2" className="fill-zinc-900" />
+      <circle cx="12" cy="12" r="4" style={{ fill: "var(--hero-bg)" }} />
+      <circle cx="17.5" cy="6.5" r="1.2" style={{ fill: "var(--hero-bg)" }} />
     </svg>
   );
 }
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#020617]">
-
-      {/* Animated Squares Background */}
+    <section
+      className="relative min-h-[90vh] flex items-center overflow-hidden"
+      style={{ backgroundColor: "var(--hero-bg)" }}
+    >
       <div className="absolute inset-0 z-0">
         <Squares
           direction="diagonal"
           speed={0.3}
           squareSize={60}
-          borderColor="rgba(255,255,255,0.06)"
-          hoverFillColor="rgba(255,255,255,0.08)"
+          borderColor="var(--hero-grid)"
+          hoverFillColor="var(--hero-grid-hover)"
         />
       </div>
 
-      {/* Subtle lighting gradient */}
       <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_top,rgba(30,64,175,0.25),transparent_60%)]" />
 
-      {/* Content */}
       <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-24">
-
         <div className="flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
 
-          {/* TEXT */}
           <div className="max-w-2xl space-y-6">
-
-            <h1 className="text-4xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+            <h1 className="text-4xl font-semibold tracking-tight sm:text-4xl lg:text-5xl" style={{ color: "var(--foreground)" }}>
               Hi there!
             </h1>
-
-            <h1 className="text-4xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+            <h1 className="text-4xl font-semibold tracking-tight sm:text-4xl lg:text-5xl" style={{ color: "var(--foreground)" }}>
               I am Apurva Shinde
             </h1>
 
-            {/* Typing animation */}
-            <p className="text-zinc-300 text-lg flex items-center">
+            <p className="text-lg flex items-center" style={{ color: "var(--foreground-muted)" }}>
               <span className="mr-2">I am into</span>
-
               <TextType
-                text={[
-                  "Artificial Intelligence",
-                  "Data Analysis",
-                  "Entrepreneurship",
-                  "Finance",
-                  "Geopolitics",
-                  "Cycling",
-                ]}
+                text={["Artificial Intelligence","Data Analysis","Entrepreneurship","Finance","Geopolitics","Cycling"]}
                 typingSpeed={60}
                 pauseDuration={2000}
                 deletingSpeed={40}
                 loop={true}
                 showCursor={true}
                 cursorCharacter="|"
-                className="font-medium text-white"
+                className="font-medium"
+                style={{ color: "var(--foreground)" }}
               />
             </p>
 
-            {/* Buttons */}
             <div className="flex items-center gap-4 pt-4">
-
               <a
                 href="/about"
-                className="rounded-full bg-zinc-50 px-6 py-2.5 text-sm font-medium text-zinc-900 hover:bg-white transition"
+                className="rounded-full px-6 py-2.5 text-sm font-medium transition"
+                style={{ backgroundColor: "var(--foreground)", color: "var(--hero-bg)" }}
               >
                 About Me
               </a>
@@ -109,7 +95,8 @@ export default function Hero() {
                 href={site.socials.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700 text-zinc-400 hover:text-zinc-100 hover:border-zinc-400"
+                className="flex h-9 w-9 items-center justify-center rounded-full border transition"
+                style={{ borderColor: "var(--card-border)", color: "var(--foreground-muted)" }}
               >
                 <LinkedInIcon className="h-4 w-4" />
               </a>
@@ -118,7 +105,8 @@ export default function Hero() {
                 href={site.socials.github}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700 text-zinc-400 hover:text-zinc-100 hover:border-zinc-400"
+                className="flex h-9 w-9 items-center justify-center rounded-full border transition"
+                style={{ borderColor: "var(--card-border)", color: "var(--foreground-muted)" }}
               >
                 <GitHubIcon className="h-4 w-4" />
               </a>
@@ -127,25 +115,23 @@ export default function Hero() {
                 href={site.socials.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700 text-zinc-400 hover:text-zinc-100 hover:border-zinc-400"
+                className="flex h-9 w-9 items-center justify-center rounded-full border transition"
+                style={{ borderColor: "var(--card-border)", color: "var(--foreground-muted)" }}
               >
                 <InstagramIcon className="h-4 w-4" />
               </a>
-
             </div>
 
-            {/* Resume hint */}
-            <p className="text-xs text-zinc-500 pt-1">
+            <p className="text-xs pt-1" style={{ color: "var(--foreground-muted)" }}>
               Resume available inside the About Me button.
             </p>
-
           </div>
 
-          {/* IMAGE */}
           <div className="relative w-full max-w-sm">
-
-            <div className="relative overflow-hidden rounded-3xl border border-zinc-800 shadow-[0_24px_80px_rgba(0,0,0,0.7)]">
-
+            <div
+              className="relative overflow-hidden rounded-3xl shadow-[0_24px_80px_rgba(0,0,0,0.7)]"
+              style={{ border: "1px solid var(--card-border)" }}
+            >
               <Image
                 src="/pic 3.png"
                 alt="Portrait of Apurva Shinde"
@@ -154,15 +140,11 @@ export default function Hero() {
                 className="w-full h-full object-cover"
                 priority
               />
-
             </div>
-
           </div>
 
         </div>
-
       </div>
-
     </section>
   );
 }

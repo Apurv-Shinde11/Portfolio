@@ -3,21 +3,45 @@
 :root {
   --background: #0A0F1C;
   --foreground: #f4f4f5;
+  --foreground-muted: #a1a1aa;
   --header-bg: rgba(9, 9, 11, 0.70);
   --header-border: rgba(24, 24, 27, 0.70);
   --nav-text: #a1a1aa;
   --nav-text-hover: #f4f4f5;
+  --card-bg: rgba(9, 9, 11, 0.40);
   --card-border: rgba(39, 39, 42, 1);
+  --card-hover-border: rgba(59, 130, 246, 1);
+  --section-border: rgba(39, 39, 42, 1);
+  --hero-bg: #020617;
+  --hero-grid: rgba(255,255,255,0.06);
+  --hero-grid-hover: rgba(255,255,255,0.08);
+  --social-hover-bg: rgba(39, 39, 42, 0.60);
+  --link-accent: #60a5fa;
+  --link-accent-hover: #93c5fd;
+  --footer-bg: rgba(9, 9, 11, 0.95);
+  --footer-border: rgba(9, 9, 11, 0.80);
 }
 
 [data-theme="light"] {
-  --background: #f8f8f6;
-  --foreground: #111111;
-  --header-bg: rgba(248, 248, 246, 0.80);
+  --background: #F0F2F5;
+  --foreground: #0f172a;
+  --foreground-muted: #4A5568;
+  --header-bg: rgba(240, 242, 245, 0.85);
   --header-border: rgba(0, 0, 0, 0.08);
-  --nav-text: #555555;
-  --nav-text-hover: #111111;
+  --nav-text: #4A5568;
+  --nav-text-hover: #0f172a;
+  --card-bg: rgba(255, 255, 255, 0.70);
   --card-border: rgba(0, 0, 0, 0.10);
+  --card-hover-border: #1E3A5F;
+  --section-border: rgba(0, 0, 0, 0.08);
+  --hero-bg: #E4E8EF;
+  --hero-grid: rgba(30, 58, 95, 0.07);
+  --hero-grid-hover: rgba(30, 58, 95, 0.12);
+  --social-hover-bg: rgba(0, 0, 0, 0.06);
+  --link-accent: #1E3A5F;
+  --link-accent-hover: #2d5a9e;
+  --footer-bg: rgba(224, 228, 235, 0.95);
+  --footer-border: rgba(0, 0, 0, 0.08);
 }
 
 @theme inline {
