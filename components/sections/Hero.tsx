@@ -128,9 +128,12 @@ export default function Hero() {
             </p>
           </div>
 
-          <div className="relative w-full max-w-sm">
+          {/* IMAGE + PIXEL CHARACTER */}
+          <div className="flex flex-row items-end gap-4 w-full max-w-md">
+
+            {/* Main photo — unchanged */}
             <div
-              className="relative overflow-hidden rounded-3xl shadow-[0_24px_80px_rgba(0,0,0,0.7)]"
+              className="relative overflow-hidden rounded-3xl shadow-[0_24px_80px_rgba(0,0,0,0.7)] flex-1"
               style={{ border: "1px solid var(--card-border)" }}
             >
               <Image
@@ -142,6 +145,17 @@ export default function Hero() {
                 priority
               />
             </div>
+
+            {/* Pixel character — adjacent, bottom-aligned */}
+            <div className="flex-shrink-0 pb-2">
+              <img
+                src="/pixel_character.gif"
+                alt="Pixel character"
+                width={110}
+                style={{ imageRendering: "pixelated" }}
+              />
+            </div>
+
           </div>
 
         </div>
