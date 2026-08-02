@@ -219,7 +219,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* ── CERTIFICATIONS SECTION ── */}
+        {/* ── CERTIFICATIONS SECTION — updated ── */}
         <div className="mt-24">
 
           {/* Section header */}
