@@ -1,13 +1,12 @@
 export const site = {
   name: "Apurva Shinde",
-  title: "Data Analyst",
+  title: "AI / GenAI Engineer | Python Developer",
   headline: "Data-driven systems. Automation-first analytics.",
   summary:
     "I design data-driven solutions that transform business inefficiencies into automated analytical systems—blending analytics, financial modeling, and AI to deliver measurable, real-world impact.",
   email: "apurv350@gmail.com",
 
-  // URL-encode spaces so the link works reliably
-  resumeHref: "/Apurva%20Shinde%20-%20Analyst%20Resume.pdf",
+  resumeHref: "/certificates/Apurva_Shinde_Resume.pdf",
 
   socials: {
     linkedin: "https://www.linkedin.com/in/apurv-shinde/",
