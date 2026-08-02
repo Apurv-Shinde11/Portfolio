@@ -14,7 +14,18 @@ const highlights = [
   { label: "Open to", value: "AI Engineer · GenAI · Python Developer roles" },
 ];
 
-const certifications = [
+type Certification = {
+  id: string;
+  title: string;
+  issuer: string;
+  year: string;
+  tag: string;
+  pdfPath: string;
+  thumbnail: string;
+  courses?: { name: string; pdf: string }[];
+};
+
+const certifications: Certification[] = [
   {
     id: "python-specialization",
     title: "Python Programming Specialization",
@@ -22,6 +33,7 @@ const certifications = [
     year: "2023",
     tag: "5 Courses",
     pdfPath: "/certificates/Coursera__python_basics-1_.pdf",
+    thumbnail: "/certificates/Coursera__python_basics-1_.png",
     courses: [
       { name: "Python Basics", pdf: "/certificates/Coursera__python_basics-1_.pdf" },
       { name: "Python Functions, Files & Dictionaries", pdf: "/certificates/Python_Certificate_2.pdf" },
@@ -37,6 +49,7 @@ const certifications = [
     year: "2023",
     tag: "AI",
     pdfPath: "/certificates/Generative_AI_Certificate__Google_cloud_.pdf",
+    thumbnail: "/certificates/Generative_AI_Certificate__Google_cloud_.png",
   },
   {
     id: "data-analytics-ibm",
@@ -45,6 +58,7 @@ const certifications = [
     year: "2024",
     tag: "Analytics",
     pdfPath: "/certificates/Data_Analytics__IBM_.pdf",
+    thumbnail: "/certificates/Data_Analytics__IBM_.png",
   },
   {
     id: "bi-analytics",
@@ -53,6 +67,7 @@ const certifications = [
     year: "2024",
     tag: "BI",
     pdfPath: "/certificates/Coursera__Business_Intelligence_and_Data_Analytics_.pdf",
+    thumbnail: "/certificates/Coursera__Business_Intelligence_and_Data_Analytics_.png",
   },
   {
     id: "javascript",
@@ -61,6 +76,7 @@ const certifications = [
     year: "2024",
     tag: "Dev",
     pdfPath: "/certificates/JavaScript__Infosys_certificate_.pdf",
+    thumbnail: "/certificates/JavaScript__Infosys_certificate_.png",
   },
   {
     id: "react-native",
@@ -69,6 +85,7 @@ const certifications = [
     year: "2024",
     tag: "Dev",
     pdfPath: "/certificates/React_Native__infosys_certificate_.pdf",
+    thumbnail: "/certificates/React_Native__infosys_certificate_.png",
   },
 ];
 
@@ -211,10 +228,10 @@ export default function About() {
               Credentials
             </p>
             <h2 className="text-3xl font-semibold tracking-tight" style={{ color: "var(--foreground)" }}>
-              Certifications
+              Always learning.
             </h2>
-            <p className="mt-2 text-sm" style={{ color: "var(--foreground-muted)" }}>
-              {certifications.length} certifications across AI, data analytics, and software development.
+            <p className="mt-2 text-base leading-relaxed max-w-xl" style={{ color: "var(--foreground-muted)" }}>
+              Continuing education and the skills I've validated along the way.
             </p>
           </div>
 
@@ -229,18 +246,27 @@ export default function About() {
                   backgroundColor: "var(--card-bg)",
                 }}
               >
-                {/* Certificate PDF preview */}
-                <div
-                  className="relative w-full overflow-hidden"
+                {/* Certificate thumbnail */}
+                <a
+                  href={cert.pdfPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block relative w-full overflow-hidden group/thumb"
                   style={{ height: 180, backgroundColor: "var(--social-hover-bg)" }}
                 >
-                  <iframe
-                    src={`${cert.pdfPath}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-                    className="w-full h-full pointer-events-none"
-                    style={{ transform: "scale(1)", transformOrigin: "top left" }}
-                    title={cert.title}
+                  <Image
+                    src={cert.thumbnail}
+                    alt={`${cert.title} certificate`}
+                    fill
+                    className="object-cover object-top transition duration-300 group-hover/thumb:scale-105"
                   />
-                </div>
+                  <div
+                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/thumb:opacity-100 transition duration-300"
+                    style={{ backgroundColor: "rgba(0,0,0,0.45)" }}
+                  >
+                    <span className="text-white text-xs font-medium">View Certificate ↗</span>
+                  </div>
+                </a>
 
                 {/* Card body */}
                 <div className="p-5">
