@@ -1,20 +1,41 @@
 "use client";
 
 import Image from "next/image";
+import {
+  BrainCircuit,
+  BriefcaseBusiness,
+  ChartColumnIncreasing,
+  ChartPie,
+  FileSearch,
+  FileSpreadsheet,
+  GitBranch,
+  Globe,
+  Search,
+  Target,
+  type LucideIcon,
+} from "lucide-react";
 
-const skills = [
-  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-  { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
-  { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
-  { name: "Scikit-learn", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" },
-  { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-  { name: "Power BI", icon: "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" },
-  { name: "Matplotlib", icon: "https://upload.wikimedia.org/wikipedia/commons/8/84/Matplotlib_icon.svg" },
-  { name: "Seaborn", icon: "https://seaborn.pydata.org/_images/logo-mark-lightbg.svg" },
-  { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-  { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-  { name: "APIs", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
-  { name: "Apache Airflow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg" },
+type Skill =
+  | { name: string; logo: string }
+  | { name: string; icon: LucideIcon; iconColor?: string };
+
+const skills: Skill[] = [
+  { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  { name: "Data Analysis", icon: ChartColumnIncreasing, iconColor: "#3b82f6" },
+  { name: "Excel", icon: FileSpreadsheet },
+  { name: "Financial Analysis", icon: ChartPie, iconColor: "#10b981" },
+  { name: "SQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+  { name: "Business Analysis", icon: BriefcaseBusiness, iconColor: "#f59e0b" },
+  { name: "Power BI", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" },
+  { name: "Business Research", icon: FileSearch, iconColor: "#8b5cf6" },
+  { name: "Pandas", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+  { name: "Strategic Analysis", icon: Target, iconColor: "#6366f1" },
+  { name: "AI / ML", icon: BrainCircuit, iconColor: "#a855f7" },
+  { name: "Decision Support", icon: GitBranch, iconColor: "#06b6d4" },
+  { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+  { name: "Market Research", icon: Search, iconColor: "#f97316" },
+  { name: "APIs", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+  { name: "Macroeconomic Research", icon: Globe, iconColor: "#0ea5e9" },
 ];
 
 export default function Skills() {
@@ -23,7 +44,7 @@ export default function Skills() {
 
       <div className="mx-auto max-w-6xl px-6 mb-16 text-center">
         <h2 className="text-3xl font-semibold tracking-tight" style={{ color: "var(--foreground)" }}>
-          Core Tech Stack
+          Core Skills &amp; Tools
         </h2>
       </div>
 
@@ -33,13 +54,28 @@ export default function Skills() {
             key={skill.name}
             className="flex flex-col items-center justify-center gap-3 text-center group"
           >
-            <Image
-              src={skill.icon}
-              alt={skill.name}
-              width={48}
-              height={48}
-              className="transition-transform duration-200 group-hover:scale-110"
-            />
+            <div className="flex h-12 w-12 items-center justify-center transition-transform duration-200 group-hover:scale-110">
+              {"logo" in skill ? (
+                <Image
+                  src={skill.logo}
+                  alt={`${skill.name} logo`}
+                  width={48}
+                  height={48}
+                  unoptimized
+                />
+              ) : (
+                <skill.icon
+                  size={34}
+                  strokeWidth={1.6}
+                  aria-hidden="true"
+                  style={{
+                    color: skill.iconColor
+                      ? `color-mix(in srgb, ${skill.iconColor} 78%, var(--foreground) 22%)`
+                      : "var(--foreground-muted)",
+                  }}
+                />
+              )}
+            </div>
             <p
               className="text-sm transition"
               style={{ color: "var(--foreground-muted)" }}

@@ -81,13 +81,12 @@ function ExperienceEntry({
     const end = start + 0.16;
     const reveal = useTransform(progress, [start, end], [0, 1]);
     const y = useTransform(reveal, [0, 1], [18, 0]);
-    const onLeft = index % 2 === 1;
     const ExperienceIcon = experience.type === "RESEARCH & STARTUP" ? Blocks : BriefcaseBusiness;
 
     return (
         <li className="relative grid grid-cols-[3rem_minmax(0,1fr)] items-start gap-x-4 md:grid-cols-[minmax(0,1fr)_5rem_minmax(0,1fr)] md:gap-x-6">
             <motion.article
-                className={`col-start-2 row-start-1 rounded-2xl border p-6 transition-colors duration-300 sm:p-7 ${onLeft ? "md:col-start-1 md:text-right" : "md:col-start-3"
+                className={`col-start-2 row-start-1 rounded-2xl border p-6 transition-colors duration-300 sm:p-7 ${index % 2 === 0 ? "md:col-start-1" : "md:col-start-3"
                     }`}
                 style={{
                     opacity: reduceMotion ? 1 : reveal,
@@ -99,7 +98,7 @@ function ExperienceEntry({
                     backgroundColor: "var(--card-bg)",
                 }}
             >
-                <div className="flex justify-end">
+                <div className="flex justify-start">
                     <span
                         className="inline-flex items-center gap-1.5 text-[10px] font-medium uppercase"
                         style={{ color: "var(--foreground-muted)" }}
@@ -109,7 +108,7 @@ function ExperienceEntry({
                     </span>
                 </div>
 
-                <div className={`mt-5 flex flex-wrap items-center justify-between gap-x-3 gap-y-2 ${onLeft ? "md:justify-end" : ""}`}>
+                <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
                     <p
                         className="text-xs font-medium uppercase"
                         style={{ color: "var(--link-accent)" }}
@@ -151,7 +150,7 @@ function ExperienceEntry({
                 >
                     Highlights
                 </p>
-                <ul className={`space-y-2.5 ${onLeft ? "md:text-right" : ""}`} aria-label={`${experience.company} highlights`}>
+                <ul className="space-y-2.5" aria-label={`${experience.company} highlights`}>
                     {experience.highlights.map((highlight) => (
                         <li key={highlight} className="flex items-start gap-2 text-sm leading-relaxed">
                             <span
@@ -164,7 +163,7 @@ function ExperienceEntry({
                     ))}
                 </ul>
                 <ul
-                    className={`mt-5 flex flex-wrap gap-2 ${onLeft ? "md:justify-end" : ""}`}
+                    className="mt-5 flex flex-wrap gap-2"
                     aria-label={`${experience.company} focus areas`}
                 >
                     {experience.tags.map((tag) => (
