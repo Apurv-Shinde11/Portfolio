@@ -16,7 +16,7 @@ const experiences = [
         company: "Nido Home Finance",
         role: "Strategy Analyst",
         type: "WORK EXPERIENCE",
-        period: "15 Sep 2026 — Present",
+        period: "September, 2026 — Present",
         location: "Mumbai",
         description:
             "Building an understanding of housing finance, real estate and corporate strategy while learning how financial analysis, market research and business performance inform decision-making within a financial institution.",
@@ -32,7 +32,7 @@ const experiences = [
         company: "EconIQ",
         role: "Builder & Co-Founder",
         type: "RESEARCH & STARTUP",
-        period: "Feb 2026 — Present",
+        period: "February, 2026 — Present",
         location: "",
         description:
             "Building a quantitative economic-intelligence platform designed to bring macroeconomic research, market signals and decision-relevant context into one coherent environment without overwhelming the user.",
@@ -48,7 +48,7 @@ const experiences = [
         company: "BabyDino / Zenith",
         role: "AI Intern & Researcher",
         type: "WORK EXPERIENCE",
-        period: "10 Jul 2025 — 30 Mar 2026",
+        period: "July, 2025 — March, 2026",
         location: "Remote",
         description:
             "Worked across AI research, experimentation and development, translating problem statements into practical Python and machine-learning workflows.",

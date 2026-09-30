@@ -2,6 +2,17 @@
 
 import Link from "next/link";
 
+const brickStyles = {
+  analytics: {
+    borderColor: "color-mix(in srgb, #4f46e5 26%, var(--card-border))",
+    backgroundColor: "color-mix(in srgb, #4f46e5 5%, var(--background))",
+  },
+  coding: {
+    borderColor: "color-mix(in srgb, #8b5cf6 26%, var(--card-border))",
+    backgroundColor: "color-mix(in srgb, #8b5cf6 5%, var(--background))",
+  },
+} as const;
+
 export default function Projects() {
   return (
     <section id="projects" className="mx-auto max-w-6xl px-6 py-24">
@@ -40,7 +51,7 @@ export default function Projects() {
               <li
                 key={project}
                 className="rounded-lg border px-4 py-3 text-sm"
-                style={{ borderColor: "var(--card-border)", backgroundColor: "var(--social-hover-bg)", color: "var(--foreground-muted)" }}
+                style={{ ...brickStyles.analytics, color: "var(--foreground-muted)" }}
               >
                 {project}
               </li>
@@ -75,7 +86,7 @@ export default function Projects() {
               <li
                 key={project}
                 className="rounded-lg border px-4 py-3 text-sm"
-                style={{ borderColor: "var(--card-border)", backgroundColor: "var(--social-hover-bg)", color: "var(--foreground-muted)" }}
+                style={{ ...brickStyles.coding, color: "var(--foreground-muted)" }}
               >
                 {project}
               </li>
