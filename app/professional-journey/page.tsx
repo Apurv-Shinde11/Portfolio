@@ -5,7 +5,7 @@ import ProfessionalJourneyTimeline from "@/components/ProfessionalJourneyTimelin
 export const metadata: Metadata = {
     title: "Professional Journey",
     description:
-        "A visual timeline of the experiences that have shaped how I approach problems, data and decisions.",
+        "A journey through the work, ideas and ventures shaping how I understand problems — from AI and economic research to financial strategy.",
 };
 
 export default function ProfessionalJourneyPage() {
@@ -19,14 +19,14 @@ export default function ProfessionalJourneyPage() {
                     Professional Journey
                 </p>
                 <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl">
-                    From building with technology to working with business.
+                    Built with code. Shaped by data. Driven by decisions.
                 </h1>
                 <p
                     className="mt-5 max-w-2xl text-base leading-relaxed"
                     style={{ color: "var(--foreground-muted)" }}
                 >
-                    A visual timeline of the experiences that have shaped how I approach
-                    problems, data and decisions.
+                    A journey through the work, ideas and ventures shaping how I understand
+                    problems — from AI and economic research to financial strategy.
                 </p>
             </section>
 

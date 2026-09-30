@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { Blocks, BriefcaseBusiness } from "lucide-react";
 import {
     motion,
     useMotionValueEvent,
@@ -13,19 +14,49 @@ import {
 const experiences = [
     {
         company: "Nido Home Finance",
-        role: "Strategy Analyst · Corporate Strategy",
-        period: "2026 — Present",
+        role: "Strategy Analyst",
+        type: "WORK EXPERIENCE",
+        period: "15 Sep 2026 — Present",
+        location: "Mumbai",
         description:
-            "Working across financial analysis, business research and decision-support within housing finance.",
+            "Building an understanding of housing finance, real estate and corporate strategy while learning how financial analysis, market research and business performance inform decision-making within a financial institution.",
+        highlights: [
+            "Developing an understanding of housing finance and real-estate business fundamentals.",
+            "Learning how business performance, market research and financial analysis support strategic decision-making.",
+            "Building familiarity with the processes and operating environment of a large financial institution.",
+        ],
         tags: ["Strategy", "Financial Analysis", "Business Research", "Decision Support"],
         current: true,
     },
     {
+        company: "EconIQ",
+        role: "Builder & Co-Founder",
+        type: "RESEARCH & STARTUP",
+        period: "Feb 2026 — Present",
+        location: "",
+        description:
+            "Building a quantitative economic-intelligence platform designed to bring macroeconomic research, market signals and decision-relevant context into one coherent environment without overwhelming the user.",
+        highlights: [
+            "Building Sentinel, the core economic-research dashboard, alongside Atlas, PE Intel, Geopolitical Watch, Simulator and Portfolio Layer.",
+            "Translating macroeconomic signals, policies and market data into structured intelligence for understanding the Indian economy and investment environment.",
+            "Developing the product as an intelligence system rather than a direct advisory tool, with the MVP currently being discussed with prospective users and investors.",
+        ],
+        tags: ["Economic Research", "Macro Analysis", "Quantitative Analysis", "Product Development"],
+        current: false,
+    },
+    {
         company: "BabyDino / Zenith",
         role: "AI Intern & Researcher",
-        period: "2025",
+        type: "WORK EXPERIENCE",
+        period: "10 Jul 2025 — 30 Mar 2026",
+        location: "Remote",
         description:
-            "Explored AI/ML applications through research, experimentation and technical projects.",
+            "Worked across AI research, experimentation and development, translating problem statements into practical Python and machine-learning workflows.",
+        highlights: [
+            "Developed an Income Tax Return Automation System to structure financial-data inputs and automate repetitive compliance workflows.",
+            "Built a Sports Recommendation System combining user inputs and live-camera analysis to recommend suitable sports based on physical characteristics.",
+            "Worked with Python, machine-learning libraries, data-processing workflows and AI/ML techniques across research and development.",
+        ],
         tags: ["AI / ML", "Python", "Research", "Data"],
         current: false,
     },
@@ -46,11 +77,12 @@ function ExperienceEntry({
     reduceMotion: boolean;
     isActive: boolean;
 }) {
-    const start = index === 0 ? 0.02 : 0.6;
-    const end = index === 0 ? 0.16 : 0.78;
+    const start = (index / experiences.length) * 0.82;
+    const end = start + 0.16;
     const reveal = useTransform(progress, [start, end], [0, 1]);
     const y = useTransform(reveal, [0, 1], [18, 0]);
     const onLeft = index % 2 === 1;
+    const ExperienceIcon = experience.type === "RESEARCH & STARTUP" ? Blocks : BriefcaseBusiness;
 
     return (
         <li className="relative grid grid-cols-[3rem_minmax(0,1fr)] items-start gap-x-4 md:grid-cols-[minmax(0,1fr)_5rem_minmax(0,1fr)] md:gap-x-6">
@@ -67,12 +99,22 @@ function ExperienceEntry({
                     backgroundColor: "var(--card-bg)",
                 }}
             >
-                <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 md:justify-start md:gap-y-3">
+                <div className="flex justify-end">
+                    <span
+                        className="inline-flex items-center gap-1.5 text-[10px] font-medium uppercase"
+                        style={{ color: "var(--foreground-muted)" }}
+                    >
+                        <ExperienceIcon size={15} strokeWidth={1.8} aria-hidden="true" />
+                        {experience.type}
+                    </span>
+                </div>
+
+                <div className={`mt-5 flex flex-wrap items-center justify-between gap-x-3 gap-y-2 ${onLeft ? "md:justify-end" : ""}`}>
                     <p
                         className="text-xs font-medium uppercase"
                         style={{ color: "var(--link-accent)" }}
                     >
-                        {experience.period}
+                        {experience.period}{experience.location ? ` · ${experience.location}` : ""}
                     </p>
                     {experience.current && (
                         <span
@@ -89,13 +131,13 @@ function ExperienceEntry({
                 </div>
 
                 <h2
-                    className="mt-4 text-xl font-semibold tracking-tight sm:text-2xl"
+                    className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl"
                     style={{ color: "var(--foreground)" }}
                 >
-                    {experience.company}
+                    {experience.role}
                 </h2>
                 <p className="mt-1 text-sm font-medium" style={{ color: "var(--foreground-muted)" }}>
-                    {experience.role}
+                    {experience.company}
                 </p>
                 <p
                     className="mt-4 text-sm leading-relaxed"
@@ -103,6 +145,24 @@ function ExperienceEntry({
                 >
                     {experience.description}
                 </p>
+                <p
+                    className="mb-2 mt-5 text-[10px] font-medium uppercase"
+                    style={{ color: "var(--foreground-muted)" }}
+                >
+                    Highlights
+                </p>
+                <ul className={`space-y-2.5 ${onLeft ? "md:text-right" : ""}`} aria-label={`${experience.company} highlights`}>
+                    {experience.highlights.map((highlight) => (
+                        <li key={highlight} className="flex items-start gap-2 text-sm leading-relaxed">
+                            <span
+                                aria-hidden="true"
+                                className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full"
+                                style={{ backgroundColor: "var(--link-accent)" }}
+                            />
+                            <span style={{ color: "var(--foreground-muted)" }}>{highlight}</span>
+                        </li>
+                    ))}
+                </ul>
                 <ul
                     className={`mt-5 flex flex-wrap gap-2 ${onLeft ? "md:justify-end" : ""}`}
                     aria-label={`${experience.company} focus areas`}
@@ -160,7 +220,10 @@ export default function ProfessionalJourneyTimeline() {
     });
 
     useMotionValueEvent(scrollYProgress, "change", (progress) => {
-        const nextActiveIndex = progress >= 0.6 ? 1 : progress >= 0.02 ? 0 : -1;
+        const nextActiveIndex = experiences.reduce((activeIndex, _, index) => {
+            const activationPoint = (index / experiences.length) * 0.82 + 0.08;
+            return progress >= activationPoint ? index : activeIndex;
+        }, -1);
         setActiveIndex((current) =>
             current === nextActiveIndex ? current : nextActiveIndex
         );
@@ -179,7 +242,7 @@ export default function ProfessionalJourneyTimeline() {
             </div>
 
             <ol
-                className="relative flex flex-col gap-y-14 md:gap-y-24"
+                className="relative flex flex-col gap-y-16 md:gap-y-24"
                 aria-label="Professional experience, newest first"
             >
                 {experiences.map((experience, index) => (
