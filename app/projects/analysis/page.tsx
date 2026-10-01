@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { getProjectIdentity } from "@/data/project-identities";
 
 type Project = {
   title: string;
@@ -180,7 +181,22 @@ export default function AnalysisProjects() {
 
                   {/* Left */}
                   <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
+                    <div className="mb-2 flex items-center gap-3">
+                      {(() => {
+                        const identity = getProjectIdentity(project.title);
+                        const Icon = identity.icon;
+                        return (
+                          <div
+                            className="flex h-8 w-8 items-center justify-center rounded-lg border"
+                            style={{
+                              borderColor: `color-mix(in srgb, ${identity.accent} 28%, var(--card-border))`,
+                              backgroundColor: `color-mix(in srgb, ${identity.accent} 12%, var(--card-bg))`,
+                            }}
+                          >
+                            <Icon className="h-4 w-4" style={{ color: identity.accent }} aria-hidden="true" />
+                          </div>
+                        );
+                      })()}
                       <span className="text-xs font-mono font-medium" style={{ color: "var(--link-accent)" }}>
                         {String(index + 1).padStart(2, "0")}
                       </span>

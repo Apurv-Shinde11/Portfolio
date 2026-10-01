@@ -2,49 +2,12 @@
 
 import Link from "next/link";
 import {
-  FileSpreadsheet,
-  ReceiptText,
-  Search,
-  Trophy,
-  TrendingUp,
-  Workflow,
-} from "lucide-react";
+  analyticsProjectIdentities,
+  codingProjectIdentities,
+} from "@/data/project-identities";
 
-const analyticsProjects = [
-  {
-    name: "Market Research & Competitive Analysis",
-    accent: "#60a5fa",
-    icon: Search,
-  },
-  {
-    name: "Automated Balance Sheet Intelligence",
-    accent: "#2dd4bf",
-    icon: FileSpreadsheet,
-  },
-  {
-    name: "Bank Operation Workflow Analysis",
-    accent: "#f59e0b",
-    icon: Workflow,
-  },
-] as const;
-
-const codingProjects = [
-  {
-    name: "Economic Research Model",
-    accent: "#a78bfa",
-    icon: TrendingUp,
-  },
-  {
-    name: "Income Tax Return (ITR) Automation System",
-    accent: "#22d3ee",
-    icon: ReceiptText,
-  },
-  {
-    name: "Sports Recommendation System",
-    accent: "#fb7185",
-    icon: Trophy,
-  },
-] as const;
+const analyticsProjects = analyticsProjectIdentities;
+const codingProjects = codingProjectIdentities;
 
 export default function Projects() {
   return (

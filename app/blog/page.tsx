@@ -32,8 +32,7 @@ export default function BlogIndexPage() {
               Ideas in progress.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed" style={{ color: "var(--foreground-muted)" }}>
-              A space for ideas I&apos;m researching, building and thinking through — across data,
-              economics, finance, technology and the decisions they shape.
+              A space for thoughts, ideas, and questions I&apos;m researching, exploring, and thinking through.
             </p>
           </div>
 
