@@ -1,17 +1,50 @@
 "use client";
 
 import Link from "next/link";
+import {
+  FileSpreadsheet,
+  ReceiptText,
+  Search,
+  Trophy,
+  TrendingUp,
+  Workflow,
+} from "lucide-react";
 
-const brickStyles = {
-  analytics: {
-    borderColor: "color-mix(in srgb, #4f46e5 26%, var(--card-border))",
-    backgroundColor: "color-mix(in srgb, #4f46e5 5%, var(--background))",
+const analyticsProjects = [
+  {
+    name: "Market Research & Competitive Analysis",
+    accent: "#60a5fa",
+    icon: Search,
   },
-  coding: {
-    borderColor: "color-mix(in srgb, #8b5cf6 26%, var(--card-border))",
-    backgroundColor: "color-mix(in srgb, #8b5cf6 5%, var(--background))",
+  {
+    name: "Automated Balance Sheet Intelligence",
+    accent: "#2dd4bf",
+    icon: FileSpreadsheet,
   },
-} as const;
+  {
+    name: "Bank Operation Workflow Analysis",
+    accent: "#f59e0b",
+    icon: Workflow,
+  },
+] as const;
+
+const codingProjects = [
+  {
+    name: "Economic Research Model",
+    accent: "#a78bfa",
+    icon: TrendingUp,
+  },
+  {
+    name: "Income Tax Return (ITR) Automation System",
+    accent: "#22d3ee",
+    icon: ReceiptText,
+  },
+  {
+    name: "Sports Recommendation System",
+    accent: "#fb7185",
+    icon: Trophy,
+  },
+] as const;
 
 export default function Projects() {
   return (
@@ -43,17 +76,22 @@ export default function Projects() {
             </span>
           </Link>
           <ul className="mt-3 space-y-2" aria-label="Selected analytics projects">
-            {[
-              "Market Research & Competitive Analysis",
-              "Macro Economic Intelligence",
-              "Bank Operation Workflow Analysis",
-            ].map((project) => (
+            {analyticsProjects.map(({ name, accent, icon: Icon }) => (
               <li
-                key={project}
-                className="rounded-lg border px-4 py-3 text-sm"
-                style={{ ...brickStyles.analytics, color: "var(--foreground-muted)" }}
+                key={name}
+                className="flex items-center justify-between gap-3 rounded-lg border px-4 py-3 text-sm"
+                style={{
+                  borderColor: `color-mix(in srgb, ${accent} 26%, var(--card-border))`,
+                  backgroundColor: `color-mix(in srgb, ${accent} 10%, var(--background))`,
+                  color: "var(--foreground-muted)",
+                }}
               >
-                {project}
+                <span className="pr-2 leading-relaxed">{name}</span>
+                <Icon
+                  className="h-4 w-4 flex-shrink-0"
+                  style={{ color: accent }}
+                  aria-hidden="true"
+                />
               </li>
             ))}
           </ul>
@@ -78,17 +116,22 @@ export default function Projects() {
             </span>
           </Link>
           <ul className="mt-3 space-y-2" aria-label="Selected coding projects">
-            {[
-              "Economic Research Model",
-              "Income Tax Return (ITR) Automation System",
-              "Sports Recommendation System",
-            ].map((project) => (
+            {codingProjects.map(({ name, accent, icon: Icon }) => (
               <li
-                key={project}
-                className="rounded-lg border px-4 py-3 text-sm"
-                style={{ ...brickStyles.coding, color: "var(--foreground-muted)" }}
+                key={name}
+                className="flex items-center justify-between gap-3 rounded-lg border px-4 py-3 text-sm"
+                style={{
+                  borderColor: `color-mix(in srgb, ${accent} 26%, var(--card-border))`,
+                  backgroundColor: `color-mix(in srgb, ${accent} 10%, var(--background))`,
+                  color: "var(--foreground-muted)",
+                }}
               >
-                {project}
+                <span className="pr-2 leading-relaxed">{name}</span>
+                <Icon
+                  className="h-4 w-4 flex-shrink-0"
+                  style={{ color: accent }}
+                  aria-hidden="true"
+                />
               </li>
             ))}
           </ul>

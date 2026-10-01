@@ -43,13 +43,13 @@ export default function Collaboration() {
 
         <div className="md:col-span-1">
           <h3 className="text-1xl sm:text-3xl font-semibold tracking-tight mb-4" style={{ color: "var(--foreground)" }}>
-            Let's Build Something Intelligent Impactful
+            Let&apos;s build something impactful
           </h3>
           <p className="leading-relaxed" style={{ color: "var(--foreground-muted)" }}>
             Thank you for visiting my portfolio. Connect with me over socials.
           </p>
           <p className="leading-relaxed" style={{ color: "var(--foreground-muted)" }}>
-            If you're working on something meaningful in this space, let's connect.
+            If you&apos;re working on something meaningful in this space, let&apos;s connect.
           </p>
         </div>
 
