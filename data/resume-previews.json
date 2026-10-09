@@ -1,0 +1,13 @@
+{
+  "source": "/certificates/Apurva_Shinde_Resume.pdf",
+  "sourceSha256": "7ec726a994ea0fcc5a6d1bc8d2cab864490cdffa7bac6423b6b2b87d49b3bdae",
+  "pages": [
+    {
+      "page": 1,
+      "src": "/resume-previews/page-1.webp",
+      "width": 1224,
+      "height": 1584,
+      "bytes": 214022
+    }
+  ]
+}

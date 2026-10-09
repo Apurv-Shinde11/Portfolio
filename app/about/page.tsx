@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { site } from "@/data/site";
+import ResumePreview from "@/components/ResumePreview";
 
 const highlights = [
   { label: "Degree", value: "MCA — AI & ML, Chandigarh University (2025)" },
@@ -190,13 +191,7 @@ export default function About() {
 
             {/* Resume CTAs */}
             <div className="flex items-center gap-4 pt-2">
-              <Link
-                href="/resume"
-                className="rounded-full px-6 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5"
-                style={{ backgroundColor: "var(--foreground)", color: "var(--background)" }}
-              >
-                View Resume
-              </Link>
+              <ResumePreview />
               <a
                 href={site.resumeHref}
                 download
