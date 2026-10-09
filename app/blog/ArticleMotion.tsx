@@ -4,20 +4,37 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import styles from "./blog.module.css";
 
 // Observe once; CSS owns the animation and the reduced-motion fallback.
-function useOnceInView() {
-  const ref = useRef<HTMLDivElement>(null);
+function useOnceInView<T extends HTMLElement = HTMLDivElement>() {
+  const ref = useRef<T>(null);
   const [entered, setEntered] = useState(false);
   useEffect(() => {
     const element = ref.current;
     if (!element || window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setEntered(true);
-        observer.disconnect();
-      }
-    }, { threshold: 0.35 });
-    observer.observe(element);
-    return () => observer.disconnect();
+    let observer: IntersectionObserver;
+    let finished = false;
+    const observeReadingArea = () => {
+      observer?.disconnect();
+      if (finished) return;
+      observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+          finished = true;
+          setEntered(true);
+          observer.disconnect();
+          window.removeEventListener("resize", observeReadingArea);
+        }
+      }, {
+        threshold: 0.6,
+        // Wait until the treatment is mostly visible above the viewport's lower edge.
+        rootMargin: `-64px 0px -${Math.round(window.innerHeight * 0.18)}px 0px`,
+      });
+      observer.observe(element);
+    };
+    observeReadingArea();
+    window.addEventListener("resize", observeReadingArea);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", observeReadingArea);
+    };
   }, []);
   return { ref, entered };
 }
@@ -55,4 +72,16 @@ export function ParagraphReveal({ children }: { children: ReactNode }) {
 export function QuestionShift({ children }: { children: ReactNode }) {
   const { ref, entered } = useOnceInView();
   return <div ref={ref} className={`${styles.question} ${entered ? styles.entered : ""}`}><p>{children}</p></div>;
+}
+
+export function ClosingUnderline({ children }: { children: ReactNode }) {
+  const { ref, entered } = useOnceInView<HTMLSpanElement>();
+  return (
+    <p className={`${styles.closing} ${entered ? styles.entered : ""}`}>
+      <span className={styles.closingText}>
+        {children}
+        <span ref={ref} className={styles.closingUnderline} aria-hidden="true" />
+      </span>
+    </p>
+  );
 }

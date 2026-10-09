@@ -19,7 +19,7 @@ export type Post = {
 export const posts: Post[] = [
   {
     slug: "ive-always-liked-building-things",
-    title: "I've Always Liked Building Things",
+    title: "Beyond the Manual",
     subtitle: "On curiosity, growing up, and figuring things out along the way.",
     excerpt: "From LEGO pieces to code, datasets, and dashboards — the tools change. The curiosity remains.",
     date: "2026-10-09",

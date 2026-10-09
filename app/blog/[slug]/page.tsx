@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { formatPostDate, getPublishedPost, getPublishedPosts, type InlineText } from "@/data/posts";
-import { BlockAssembly, ParagraphReveal, QuestionShift } from "../ArticleMotion";
+import { BlockAssembly, ClosingUnderline, ParagraphReveal, QuestionShift } from "../ArticleMotion";
 import styles from "../blog.module.css";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -63,7 +63,7 @@ export default async function BlogPostPage({ params }: Props) {
               case "question-shift":
                 return <QuestionShift key={index}>{text}</QuestionShift>;
               case "closing":
-                return <p key={index} className={styles.closing}>{text}</p>;
+                return post.slug === "ive-always-liked-building-things" ? <ClosingUnderline key={index}>{text}</ClosingUnderline> : <p key={index} className={styles.closing}>{text}</p>;
               case "signature":
                 return <p key={index} className={styles.signature}>{text}</p>;
               default:
