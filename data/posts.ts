@@ -1,15 +1,50 @@
+export type InlineText = string | { text: string; emphasis: true };
+export type PostParagraph = {
+  text: InlineText[];
+  treatment?: "block-assembly" | "question-shift" | "closing" | "signature";
+};
+
 export type Post = {
   slug: string;
   title: string;
   excerpt: string;
   date: string; // YYYY-MM-DD
-  category: "dev" | "data" | "career" | "misc";
-  content: string[];
+  category: "dev" | "data" | "career" | "misc" | "Personal / Reflections";
+  status: "draft" | "published";
+  subtitle?: string;
+  readingTime?: string;
+  content: (string | PostParagraph)[];
 };
 
 export const posts: Post[] = [
   {
+    slug: "ive-always-liked-building-things",
+    title: "I've Always Liked Building Things",
+    subtitle: "On curiosity, growing up, and figuring things out along the way.",
+    excerpt: "From LEGO pieces to code, datasets, and dashboards — the tools change. The curiosity remains.",
+    date: "2026-10-09",
+    category: "Personal / Reflections",
+    readingTime: "1 min",
+    status: "published",
+    content: [
+      { text: ["As a kid, I loved LEGO. The manual showed how to build a house, but I wanted ships, aircraft, trucks, and whatever else I could imagine."], treatment: "block-assembly" },
+      "The fun wasn't following instructions. It was discovering what else was possible.",
+      "Between cycling with friends and playing gully cricket, I was always curious. How do things work? Why? Could they work differently?",
+      "Growing up complicated those questions. Suddenly, curiosity had to fit into a career path. My interests stretched across technology, AI, finance, economics, and aviation. Sometimes exciting, sometimes confusing.",
+      "But perhaps not everything needs to connect immediately.",
+      "Eventually, LEGO pieces became code, datasets, and dashboards. The tools changed, but the satisfaction of building something from nothing remained.",
+      { text: ["My questions evolved too. From ", { text: "How does it work?", emphasis: true }, " to ", { text: "Why does it matter?", emphasis: true }], treatment: "question-shift" },
+      "That shift eventually led me toward business and corporate strategy, where understanding information matters as much as using it to make decisions.",
+      "Now, I'm adding writing to the mix. Not because I've figured everything out, but because I haven't.",
+      "A space to explore ideas, document experiences, and connect seemingly unrelated interests.",
+      "After all, why limit yourself to what the manual says?",
+      { text: ["The tools change. The curiosity remains."], treatment: "closing" },
+      { text: ["So, this is where I begin."], treatment: "signature" },
+    ],
+  },
+  {
     slug: "building-automation-first-analytics",
+    status: "draft",
     title: "Building automation-first analytics",
     excerpt:
       "Why I focus on repeatable systems (pipelines, checks, templates) rather than one-off dashboards.",
@@ -23,6 +58,7 @@ export const posts: Post[] = [
   },
   {
     slug: "how-i-choose-projects",
+    status: "draft",
     title: "How I choose portfolio projects",
     excerpt:
       "A simple checklist for picking projects that demonstrate both coding and business impact.",
@@ -36,3 +72,16 @@ export const posts: Post[] = [
   },
 ];
 
+export function getPublishedPosts() {
+  return posts.filter((post) => post.status === "published").sort((a, b) => b.date.localeCompare(a.date));
+}
+
+export function getPublishedPost(slug: string) {
+  return posts.find((post) => post.slug === slug && post.status === "published");
+}
+
+export function formatPostDate(iso: string) {
+  return new Intl.DateTimeFormat("en", {
+    year: "numeric", month: "long", day: "numeric", timeZone: "UTC",
+  }).format(new Date(`${iso}T00:00:00Z`));
+}
