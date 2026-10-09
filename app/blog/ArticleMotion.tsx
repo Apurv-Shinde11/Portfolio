@@ -26,25 +26,30 @@ export function BlockAssembly() {
   const { ref, entered } = useOnceInView();
   return (
     <div ref={ref} className={`${styles.assembly} ${entered ? styles.entered : ""}`} aria-hidden="true">
-      <svg viewBox="0 0 200 88" width="200" height="88" focusable="false">
+      <svg viewBox="0 0 144 56" width="144" height="56" focusable="false">
         <g className={styles.block}>
-          <rect x="18" y="55" width="76" height="22" rx="3" />
-          <rect x="28" y="49" width="14" height="6" rx="2" />
-          <rect x="66" y="49" width="14" height="6" rx="2" />
+          <rect x="12" y="22" width="32" height="14" rx="2" />
+          <rect x="17" y="18" width="7" height="4" rx="1" />
+          <rect x="32" y="18" width="7" height="4" rx="1" />
         </g>
         <g className={styles.block}>
-          <rect x="100" y="55" width="76" height="22" rx="3" />
-          <rect x="110" y="49" width="14" height="6" rx="2" />
-          <rect x="148" y="49" width="14" height="6" rx="2" />
+          <rect x="54" y="17" width="32" height="14" rx="2" />
+          <rect x="59" y="13" width="7" height="4" rx="1" />
+          <rect x="74" y="13" width="7" height="4" rx="1" />
         </g>
         <g className={styles.block}>
-          <rect x="59" y="27" width="76" height="22" rx="3" />
-          <rect x="69" y="21" width="14" height="6" rx="2" />
-          <rect x="107" y="21" width="14" height="6" rx="2" />
+          <rect x="96" y="28" width="32" height="14" rx="2" />
+          <rect x="101" y="24" width="7" height="4" rx="1" />
+          <rect x="116" y="24" width="7" height="4" rx="1" />
         </g>
       </svg>
     </div>
   );
+}
+
+export function ParagraphReveal({ children }: { children: ReactNode }) {
+  const { ref, entered } = useOnceInView();
+  return <div ref={ref} className={`${styles.reveal} ${entered ? styles.entered : ""}`}><p>{children}</p></div>;
 }
 
 export function QuestionShift({ children }: { children: ReactNode }) {

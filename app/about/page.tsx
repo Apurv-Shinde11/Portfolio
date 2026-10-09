@@ -190,15 +190,13 @@ export default function About() {
 
             {/* Resume CTAs */}
             <div className="flex items-center gap-4 pt-2">
-              <a
-                href={site.resumeHref}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/resume"
                 className="rounded-full px-6 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5"
                 style={{ backgroundColor: "var(--foreground)", color: "var(--background)" }}
               >
                 View Resume
-              </a>
+              </Link>
               <a
                 href={site.resumeHref}
                 download

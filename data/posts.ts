@@ -1,7 +1,7 @@
 export type InlineText = string | { text: string; emphasis: true };
 export type PostParagraph = {
   text: InlineText[];
-  treatment?: "block-assembly" | "question-shift" | "closing" | "signature";
+  treatment?: "block-assembly" | "paragraph-reveal" | "question-shift" | "closing" | "signature";
 };
 
 export type Post = {
@@ -28,7 +28,7 @@ export const posts: Post[] = [
     status: "published",
     content: [
       { text: ["As a kid, I loved LEGO. The manual showed how to build a house, but I wanted ships, aircraft, trucks, and whatever else I could imagine."], treatment: "block-assembly" },
-      "The fun wasn't following instructions. It was discovering what else was possible.",
+      { text: ["The fun wasn't following instructions. It was discovering what else was possible."], treatment: "paragraph-reveal" },
       "Between cycling with friends and playing gully cricket, I was always curious. How do things work? Why? Could they work differently?",
       "Growing up complicated those questions. Suddenly, curiosity had to fit into a career path. My interests stretched across technology, AI, finance, economics, and aviation. Sometimes exciting, sometimes confusing.",
       "But perhaps not everything needs to connect immediately.",

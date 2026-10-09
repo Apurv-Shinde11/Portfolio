@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { formatPostDate, getPublishedPost, getPublishedPosts, type InlineText } from "@/data/posts";
-import { BlockAssembly, QuestionShift } from "../ArticleMotion";
+import { BlockAssembly, ParagraphReveal, QuestionShift } from "../ArticleMotion";
 import styles from "../blog.module.css";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -57,7 +57,9 @@ export default async function BlogPostPage({ params }: Props) {
             const text = inlineText(paragraph.text);
             switch (paragraph.treatment) {
               case "block-assembly":
-                return <div key={index}><BlockAssembly /><p>{text}</p></div>;
+                return <div key={index}>{post.slug === "ive-always-liked-building-things" && <BlockAssembly />}<p>{text}</p></div>;
+              case "paragraph-reveal":
+                return post.slug === "ive-always-liked-building-things" ? <ParagraphReveal key={index}>{text}</ParagraphReveal> : <p key={index}>{text}</p>;
               case "question-shift":
                 return <QuestionShift key={index}>{text}</QuestionShift>;
               case "closing":
