@@ -3,7 +3,9 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import MumbaiGlobe from "@/components/ui/Globe";
-import { Github, Linkedin, Mail, Instagram } from "lucide-react";
+import { Github, Linkedin, Mail, Instagram, ArrowUpRight } from "lucide-react";
+import { site } from "@/data/site";
+import styles from "./MyWorld.module.css";
 
 export default function MyWorld() {
   const [time, setTime] = useState("");
@@ -26,21 +28,7 @@ export default function MyWorld() {
           My World
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
-
-          {/* Card 1 — Photo */}
-          <div
-            className="overflow-hidden rounded-3xl"
-            style={{ border: "1px solid var(--card-border)" }}
-          >
-            <Image
-              src="/pic 1.png"
-              alt="Apurva Shinde"
-              width={400}
-              height={400}
-              className="rounded-xl object-cover"
-            />
-          </div>
+        <div className={styles.layout} data-my-world-cards>
 
           {/* Card 2 — Location + Globe */}
           <div
@@ -63,60 +51,40 @@ export default function MyWorld() {
             </p>
           </div>
 
-          {/* Card 3 — Social Links */}
-          <div
-            className="rounded-2xl p-6 hover:scale-[1.02] transition duration-300"
-            style={{ border: "1px solid var(--card-border)", backgroundColor: "var(--card-bg)" }}
-          >
-            <p className="text-md mb-8 text-center" style={{ color: "var(--foreground-muted)" }}>
-              Find me here
-            </p>
-            <div className="grid grid-cols-2 gap-8">
-              <a
-                href="https://github.com/Apurv-Shinde11"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center gap-2 transition p-4 rounded-lg"
-                style={{ color: "var(--foreground)" }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--social-hover-bg)"; e.currentTarget.style.color = "var(--foreground-muted)"; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--foreground)"; }}
-              >
-                <Github size={36} />
-                <span className="text-sm">GitHub</span>
+          <div className={styles.showcase} aria-labelledby="find-me-heading">
+            <div className={styles.intro}>
+              <h3 id="find-me-heading">Find Me Here</h3>
+              <p>What I build, what I share, and life in between.</p>
+            </div>
+            <div className={styles.socialGrid}>
+              <a href="https://github.com/Apurv-Shinde11" target="_blank" rel="noopener noreferrer" className={`${styles.preview} ${styles.github}`}>
+                <div className={styles.label}><Github size={18} aria-hidden="true" /><span>GitHub</span><ArrowUpRight size={16} aria-hidden="true" /></div>
+                <p className={styles.caption}>Apurv-Shinde11 / Building in public</p>
+                <div className={`${styles.imageFrame} ${styles.githubFrame}`}>
+                  <Image src="/socials/github-contributions.png" alt="GitHub contribution calendar for Apurv-Shinde11, with authentic green activity squares across the year." width={1120} height={222} sizes="(min-width: 1024px) 650px, (min-width: 640px) 85vw, 90vw" loading="lazy" className={styles.screenshot} />
+                </div>
+                <span className="sr-only">Opens GitHub in a new tab.</span>
               </a>
-              <a
-                href="https://linkedin.com/in/apurv-shinde"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center gap-2 transition p-4 rounded-lg"
-                style={{ color: "var(--foreground)" }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--social-hover-bg)"; e.currentTarget.style.color = "#3b82f6"; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--foreground)"; }}
-              >
-                <Linkedin size={36} />
-                <span className="text-sm">LinkedIn</span>
+              <a href="https://linkedin.com/in/apurv-shinde" target="_blank" rel="noopener noreferrer" className={`${styles.preview} ${styles.linkedin}`}>
+                <div className={styles.label}><Linkedin size={18} aria-hidden="true" /><span>LinkedIn</span><ArrowUpRight size={16} aria-hidden="true" /></div>
+                <p className={styles.caption}>Professional life &amp; perspectives</p>
+                <div className={`${styles.imageFrame} ${styles.linkedinFrame}`}>
+                  <Image src="/socials/linkedin-profile.png" alt="Apurva Shinde's LinkedIn profile header, portrait, and Strategy Analyst role in Mumbai." width={900} height={585} sizes="(min-width: 1024px) 350px, (min-width: 640px) 50vw, 90vw" loading="lazy" className={styles.screenshot} />
+                </div>
+                <span className="sr-only">Opens LinkedIn in a new tab.</span>
               </a>
-              <a
-                href="mailto:apurv350@gmail.com"
-                className="flex flex-col items-center gap-2 transition p-4 rounded-lg"
-                style={{ color: "var(--foreground)" }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--social-hover-bg)"; e.currentTarget.style.color = "#eab308"; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--foreground)"; }}
-              >
-                <Mail size={36} />
-                <span className="text-sm">Email</span>
+              <a href="https://www.instagram.com/_apurvshinde_/" target="_blank" rel="noopener noreferrer" className={`${styles.preview} ${styles.instagram}`}>
+                <div className={styles.label}><Instagram size={18} aria-hidden="true" /><span>Instagram</span><ArrowUpRight size={16} aria-hidden="true" /></div>
+                <p className={styles.caption}>_apurvshinde_ / Just for fun</p>
+                <div className={`${styles.imageFrame} ${styles.instagramFrame}`}>
+                  <Image src="/socials/instagram-profile.png" alt="Apurv's Instagram profile, showing the portrait, public post and follower counts, and Just for fun bio." width={720} height={248} sizes="(min-width: 1024px) 290px, (min-width: 640px) 40vw, 90vw" loading="lazy" className={styles.screenshot} />
+                </div>
+                <span className="sr-only">Opens Instagram in a new tab.</span>
               </a>
-              <a
-                href="https://www.instagram.com/_apurvshinde_/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center gap-2 transition p-4 rounded-lg"
-                style={{ color: "var(--foreground)" }}
-                onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--social-hover-bg)"; e.currentTarget.style.color = "#ec4899"; }}
-                onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--foreground)"; }}
-              >
-                <Instagram size={36} />
-                <span className="text-sm">Instagram</span>
+              <a href={`mailto:${site.email}`} className={`${styles.preview} ${styles.email}`}>
+                <div className={styles.label}><Mail size={18} aria-hidden="true" /><span>Let&apos;s connect</span><ArrowUpRight size={16} aria-hidden="true" /></div>
+                <p className={styles.emailAddress}>{site.email}</p>
+                <p className={styles.caption}>An idea, a question, or a simple hello.</p>
               </a>
             </div>
           </div>

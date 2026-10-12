@@ -1,0 +1,28 @@
+.layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: start; }
+.showcase { min-width: 0; padding: 24px; border: 1px solid var(--card-border); border-radius: 16px; background: var(--card-bg); }
+.intro h3 { font-size: 22px; font-weight: 500; color: var(--foreground); letter-spacing: -0.025em; }
+.intro p { margin-top: 8px; color: var(--foreground-muted); font-size: 14px; line-height: 1.6; }
+.socialGrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; margin-top: 28px; }
+.preview { display: block; min-width: 0; color: var(--foreground); border-radius: 8px; }
+.label { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; }
+.label > svg:last-child { margin-left: auto; color: var(--foreground-muted); transition: transform 180ms ease, color 180ms ease; }
+.caption { color: var(--foreground-muted); font-size: 12px; line-height: 1.6; margin-top: 7px; }
+.imageFrame { margin-top: 12px; overflow: hidden; border: 1px solid var(--card-border); border-radius: 8px; }
+.githubFrame { aspect-ratio: 1120 / 222; background: #0d1117; }
+.linkedinFrame { aspect-ratio: 900 / 585; background: white; }
+.instagramFrame { aspect-ratio: 720 / 248; background: #0d1117; }
+.screenshot { display: block; width: 100%; height: auto; }
+.email { padding-top: 18px; border-top: 1px solid var(--section-border); }
+.emailAddress { margin-top: 12px; font-size: 15px; font-weight: 500; overflow-wrap: anywhere; color: var(--link-accent); }
+.preview:focus-visible { outline: 2px solid var(--link-accent); outline-offset: 6px; }
+.preview:hover .label { color: var(--link-accent); }
+.preview:hover .label > svg:last-child { color: var(--link-accent); transform: translate(1px, -1px); }
+@media (min-width: 640px) {
+  .socialGrid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); column-gap: 20px; }
+  .github { grid-column: 1 / -1; }
+  .linkedin { grid-column: 1; grid-row: 2 / 4; }
+  .instagram { grid-column: 2; grid-row: 2; }
+  .email { grid-column: 2; grid-row: 3; align-self: start; }
+}
+@media (min-width: 1024px) { .layout { grid-template-columns: minmax(336px, 0.85fr) minmax(0, 1.65fr); } }
+@media (prefers-reduced-motion: reduce) { .preview .label > svg:last-child { transition: none; transform: none; } }
