@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import MumbaiGlobe from "@/components/ui/Globe";
+import { formatMumbaiTime } from "@/components/ui/earth-solar";
 import { Github, Linkedin, Mail, Instagram, ArrowUpRight } from "lucide-react";
 import { site } from "@/data/site";
 import styles from "./MyWorld.module.css";
@@ -13,7 +14,7 @@ export default function MyWorld() {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      setTime(now.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "medium" }));
+      setTime(formatMumbaiTime(now));
     };
     updateTime();
     const interval = setInterval(updateTime, 1000);
@@ -32,22 +33,22 @@ export default function MyWorld() {
 
           {/* Card 2 — Location + Globe */}
           <div
-            className="rounded-2xl p-6 flex flex-col items-center text-center hover:scale-[1.02] transition duration-300"
+            className="rounded-2xl p-6 flex flex-col items-center text-center"
             style={{ border: "1px solid var(--card-border)", backgroundColor: "var(--card-bg)" }}
           >
             <div className="mb-4">
               <p className="text-sm mb-1" style={{ color: "var(--foreground-muted)" }}>
-                Swipe the globe to reach
+                Drag to explore / swipe vertically to scroll
               </p>
               <h3 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
                 Mumbai, India
               </h3>
             </div>
-            <div className="my-15">
+            <div className="my-15 w-full">
               <MumbaiGlobe />
             </div>
             <p className="text-md" style={{ color: "var(--foreground)" }}>
-              {time}
+              {time} <span className="text-xs" style={{ color: "var(--foreground-muted)" }}>IST</span>
             </p>
           </div>
 

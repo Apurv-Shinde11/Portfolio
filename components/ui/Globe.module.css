@@ -1,0 +1,11 @@
+.figure { width: min(280px, 100%); margin-inline: auto; color: var(--foreground-muted); }
+.stage { width: 100%; height: 260px; position: relative; }
+.canvasHost { position: absolute; inset: 0; }
+.canvasHost canvas { display: block; max-width: 100%; margin-inline: auto; touch-action: pan-y pinch-zoom; }
+.canvasHost canvas:focus-visible { outline: 2px solid var(--link-accent); outline-offset: 3px; border-radius: 8px; }
+.fallback { display: flex; flex-direction: column; justify-content: center; gap: 12px; height: 100%; }
+.fallback img { width: 100%; height: auto; border-radius: 8px; }
+.fallback p, .caption { font-size: 11px; line-height: 1.6; text-align: center; }
+.caption { margin-top: 12px; }
+.caption a { text-decoration: underline; text-underline-offset: 3px; }
+.caption a:focus-visible { outline: 2px solid var(--link-accent); outline-offset: 3px; }
