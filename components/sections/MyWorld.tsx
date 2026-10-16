@@ -8,7 +8,7 @@ import { Github, Linkedin, Mail, Instagram, ArrowUpRight } from "lucide-react";
 import { site } from "@/data/site";
 import styles from "./MyWorld.module.css";
 
-export default function MyWorld() {
+export default function MyWorld({ globe, globeInstructions = "Earth to Mumbai / scroll to explore" }: { globe?: React.ReactNode; globeInstructions?: string } = {}) {
   const [time, setTime] = useState("");
 
   useEffect(() => {
@@ -38,14 +38,14 @@ export default function MyWorld() {
           >
             <div className="mb-4">
               <p className="text-sm mb-1" style={{ color: "var(--foreground-muted)" }}>
-                Drag to explore / swipe vertically to scroll
+                {globeInstructions}
               </p>
               <h3 className="text-xl font-medium" style={{ color: "var(--foreground)" }}>
                 Mumbai, India
               </h3>
             </div>
             <div className="my-15 w-full">
-              <MumbaiGlobe />
+              {globe ?? <MumbaiGlobe />}
             </div>
             <p className="text-md" style={{ color: "var(--foreground)" }}>
               {time} <span className="text-xs" style={{ color: "var(--foreground-muted)" }}>IST</span>

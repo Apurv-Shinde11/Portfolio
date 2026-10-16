@@ -1,38 +1,30 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEarthJourney } from "./useEarthJourney";
 import styles from "./Globe.module.css";
 
 export default function MumbaiGlobe() {
-  const host = useRef<HTMLDivElement>(null);
-  const [status, setStatus] = useState<"loading" | "ready" | "fallback">("loading");
-  useEffect(() => {
-    const controller = new AbortController();
-    let dispose: (() => void) | undefined;
-    const element = host.current;
-    if (!element) return;
-    import("./earth-renderer").then(async ({ createEarth }) => {
-      if (controller.signal.aborted) return;
-      dispose = await createEarth(element, () => setStatus("fallback"), controller.signal);
-      if (controller.signal.aborted) dispose();
-      else setStatus("ready");
-    }).catch(() => { if (!controller.signal.aborted) setStatus("fallback"); });
-    return () => { controller.abort(); dispose?.(); };
-  }, []);
+  const { host, status, imagery } = useEarthJourney();
   return (
-    <figure className={styles.figure} aria-label={status === "ready" ? "Mumbai on Earth with approximate current day and night illumination" : "Static world map and Mumbai coordinates"}>
+    <figure className={styles.figure} aria-label="Earth to Mumbai: daylight satellite destination with historical municipal outline">
       <div className={styles.stage} data-earth-status={status}>
         {status !== "ready" && (
           <div className={styles.fallback}>
-            <Image src="/earth/day.webp" alt="NASA world map. Mumbai is at 19.076 degrees north, 72.8777 degrees east." width={2048} height={1024} sizes="280px" />
-            <p>{status === "fallback" ? "Interactive Earth unavailable." : "Earth map preview."} Mumbai, India: 19.076° N, 72.878° E.</p>
+            <Image src={status === "fallback" ? "/mumbai-imagery/20251227-mumbai.svg" : "/earth/day.webp"} alt={status === "fallback" ? "Static daylight satellite map of the full Mumbai extent, with historical municipal outline and a single MUMBAI label." : "NASA world map preview."} width={status === "fallback" ? 1158 : 2048} height={status === "fallback" ? 2048 : 1024} sizes="280px" unoptimized />
           </div>
         )}
         <div ref={host} className={styles.canvasHost} />
       </div>
       <figcaption className={styles.caption}>
-        {status === "ready" ? "Approximate solar illumination" : "Static geographic map"} · <a href="https://science.nasa.gov/earth/earth-observatory/earth-at-night/maps/" target="_blank" rel="noopener noreferrer">NASA Earth Observatory<span className="sr-only"> imagery, opens in a new tab</span></a>
+        <span>Contains modified Copernicus Sentinel data 2025.</span>{" "}
+        <a href="https://cds.climate.copernicus.eu/licences/ec-sentinel" target="_blank" rel="noopener noreferrer">Copernicus</a>{" · "}
+        <a href="https://science.nasa.gov/earth/earth-observatory/earth-at-night/maps/" target="_blank" rel="noopener noreferrer">NASA</a>{" · "}
+        <a href="https://github.com/datameet/Municipal_Spatial_Data/tree/master/Mumbai" target="_blank" rel="noopener noreferrer">DataMeet</a>{" "}
+        (<a href="https://creativecommons.org/licenses/by-sa/2.5/in/" target="_blank" rel="noopener noreferrer">CC BY-SA</a>)
+        {" · "}<a href="https://www.geonames.org/export/" target="_blank" rel="noopener noreferrer">GeoNames</a>
+        <span className={styles.qualifier}>Historical boundary; daylight destination imagery.</span>
+        <span className="sr-only" role="status">{status === "fallback" ? "Interactive Earth unavailable. Static Mumbai view." : imagery === "failed" ? "Mumbai imagery unavailable. Earth overview retained." : "Earth transitions to the full Mumbai extent and holds until you leave this section."}</span>
       </figcaption>
     </figure>
   );

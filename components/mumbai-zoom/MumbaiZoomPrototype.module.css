@@ -1,0 +1,18 @@
+.intro, .notes { max-width: 1152px; margin-inline: auto; padding: 48px 24px; color: var(--foreground); }
+.intro { min-height: 65dvh; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+.intro h1 { font-size: clamp(28px,4vw,44px); letter-spacing: -.04em; }
+.intro p, .notes p { max-width: 75ch; color: var(--foreground-muted); line-height: 1.8; font-size: 14px; }
+.figure { width: min(280px,100%); margin-inline: auto; }
+.stage { position: relative; width: 100%; height: 260px; }
+.stage canvas { display: block; max-width: 100%; pointer-events: none; }
+.fallback { position: absolute; inset: 0; font-size: 11px; color: var(--foreground-muted); }
+.fallback img { width: 100%; height: 100%; object-fit: contain; }
+.fallback p { position: absolute; inset: auto 4px 4px; padding: 4px; background: var(--card-bg); }
+.diagnostics { display: grid; gap: 12px; margin-top: 16px; text-align: left; font-size: 11px; line-height: 1.7; color: var(--foreground-muted); }
+.diagnostics button { color: var(--foreground); border: 1px solid var(--card-border); border-radius: 8px; padding: 8px 12px; }
+.diagnostics button:disabled { opacity: .5; cursor: not-allowed; }
+.diagnostics button:focus-visible, .diagnostics a:focus-visible, .notes a:focus-visible { outline: 2px solid var(--link-accent); outline-offset: 3px; }
+.diagnostics label { display: flex; gap: 8px; align-items: start; }
+.notes { min-height: 120dvh; display: grid; align-content: start; gap: 20px; }
+.notes a { text-decoration: underline; text-underline-offset: 3px; }
+.diagnostics a { color: var(--link-accent); text-decoration: underline; }

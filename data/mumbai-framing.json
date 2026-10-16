@@ -1,0 +1,8 @@
+{
+  "bbox": [72.77633295153348, 18.89395643371942, 72.97973149704592, 19.270176667777736],
+  "source": "https://github.com/datameet/Municipal_Spatial_Data/blob/c0e247f8e2ea3222965c445154122ab06ff49857/Mumbai/BMC_Wards.geojson",
+  "creator": "Pune chapter of the DataMeet Trust, Bangalore, India",
+  "license": "https://creativecommons.org/licenses/by-sa/2.5/in/",
+  "features": 24,
+  "note": "Envelope derived from all 24 BMC wards. Historical community dataset, not a current legal boundary or MMR extent. Rectangle is a framing guide, not a municipal outline. No source polygon artwork is reproduced."
+}

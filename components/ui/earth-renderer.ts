@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { geographicDirection, MUMBAI, solarPosition } from "./earth-solar";
+import { createMumbaiJourney, type JourneyOptions } from "./earth-journey";
 
 const vertexShader = `
   varying vec2 vUv;
@@ -15,7 +16,7 @@ const vertexShader = `
   }
 `;
 
-export async function createEarth(host: HTMLDivElement, onFailure: () => void, signal: AbortSignal) {
+export async function createEarth(host: HTMLDivElement, onFailure: () => void, signal: AbortSignal, options: { journey?: JourneyOptions } = {}) {
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "low-power" });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -37,6 +38,7 @@ export async function createEarth(host: HTMLDivElement, onFailure: () => void, s
   controls.dampingFactor = 0.12;
   controls.rotateSpeed = 0.45;
   controls.autoRotate = false; // Near-static idle; never override a visitor's chosen view.
+  if(options.journey){controls.enabled=false;controls.enableDamping=false;canvas.tabIndex=-1;canvas.setAttribute("aria-label","Earth approaching the full BMC Mumbai city framing envelope. Automatic development preview.");}
   // OrbitControls defaults to touch-action:none. Allow natural vertical page scrolling.
   canvas.style.touchAction = "pan-y pinch-zoom";
   let textures: THREE.Texture[] = [];
@@ -105,7 +107,12 @@ export async function createEarth(host: HTMLDivElement, onFailure: () => void, s
   let visible = false;
   let disposed = false;
   let arrivalStart: number | null = null;
-  let arrivalDone = preference.matches;
+  let arrivalDone = preference.matches || !!options.journey;
+  let journey: ReturnType<typeof createMumbaiJourney> | undefined;
+  let destination: Awaited<ReturnType<typeof import("./earth-destination").createDestination>> | undefined;
+  let imageryStatus: "loading" | "ready" | "failed" = "loading";
+  let imageryTimeout: ReturnType<typeof setTimeout> | undefined;
+  let renderedFrames = 0;
   let dragging = false;
   let solarUpdated = 0;
   const updateSun = () => {
@@ -126,12 +133,39 @@ export async function createEarth(host: HTMLDivElement, onFailure: () => void, s
       camera.position.copy(initialDirection).multiplyScalar(4.1 - 0.9 * eased);
       arrivalDone = progress === 1;
     }
+    const journeyMoving = journey?.update(time) ?? false;
     const moving = controls.update();
     renderer.render(scene, camera);
+    if(options.journey){host.dataset.renderedFrames=String(++renderedFrames);host.dataset.drawCalls=String(renderer.info.render.calls);host.dataset.gpuTextures=String(renderer.info.memory.textures);}
     host.dataset.camera = camera.position.toArray().map(value => value.toFixed(3)).join(",");
-    if (!arrivalDone || dragging || moving) requestRender();
+    if (!arrivalDone || dragging || moving || journeyMoving) requestRender();
   };
   const requestRender = () => { if (!frame && !disposed && visible && !document.hidden) frame = requestAnimationFrame(render); };
+  if(options.journey){
+    options.journey.onImagery?.("loading");
+    host.dataset.imageryStatus="loading";
+    const failDestination=()=>{
+      clearTimeout(imageryTimeout);
+      if(disposed||signal.aborted)return;
+      imageryStatus="failed";host.dataset.imageryStatus="failed";
+      options.journey?.onImagery?.("failed");requestRender();
+    };
+    imageryTimeout=setTimeout(failDestination,20000);
+    const destinationFailed=()=>imageryStatus==="failed";
+    journey=createMumbaiJourney(camera,marker,scene,host,requestRender,preference,{
+      ...options.journey,
+      destination:{readiness:()=>imageryStatus,update:(progress,active)=>destination?.update(progress,active)},
+    });
+    // Only journey-enabled instances load the destination mesh, data, and texture.
+    import("./earth-destination").then(async({createDestination})=>{
+      if(disposed||signal.aborted||destinationFailed())return;
+      const loaded=await createDestination(host,scene,camera,uniforms.sun,signal);
+      if(disposed||signal.aborted||destinationFailed()){loaded.dispose();return;}
+      clearTimeout(imageryTimeout);
+      destination=loaded;imageryStatus="ready";host.dataset.imageryStatus="ready";
+      options.journey?.onImagery?.("ready");journey?.pause();requestRender();
+    }).catch(failDestination);
+  }
   const start = () => { arrivalDone = true; dragging = true; requestRender(); };
   const end = () => { dragging = false; requestRender(); };
   const resized = () => {
@@ -145,20 +179,21 @@ export async function createEarth(host: HTMLDivElement, onFailure: () => void, s
     visible = entry.isIntersecting;
     host.dataset.rendering = visible && !document.hidden ? "active" : "paused";
     if (visible) { updateSun(); requestRender(); }
-    else { cancelAnimationFrame(frame); frame = 0; }
+    else { cancelAnimationFrame(frame); frame = 0; journey?.pause(); }
   }, { threshold: 0 });
   visibility.observe(host);
   const hidden = () => {
     host.dataset.rendering = visible && !document.hidden ? "active" : "paused";
-    if (document.hidden) { cancelAnimationFrame(frame); frame = 0; }
+    if (document.hidden) { cancelAnimationFrame(frame); frame = 0; journey?.pause(); }
     else { updateSun(); requestRender(); }
   };
   const reduced = () => {
-    controls.enableDamping = !preference.matches;
+    controls.enableDamping = !options.journey && !preference.matches;
     if (preference.matches && !arrivalDone) { arrivalDone = true; camera.position.copy(initialDirection).multiplyScalar(3.2); }
     requestRender();
   };
   const keyboard = (event: KeyboardEvent) => {
+    if(options.journey)return;
     if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) return;
     event.preventDefault(); arrivalDone = true;
     const spherical = new THREE.Spherical().setFromVector3(camera.position);
@@ -174,12 +209,14 @@ export async function createEarth(host: HTMLDivElement, onFailure: () => void, s
   resized(); updateSun();
   function dispose() {
     if (disposed) return;
-    disposed = true; cancelAnimationFrame(frame); clearInterval(minute);
+    disposed = true; cancelAnimationFrame(frame); clearInterval(minute); clearTimeout(imageryTimeout);
     visibility.disconnect(); resizedObserver.disconnect();
     document.removeEventListener("visibilitychange", hidden); preference.removeEventListener("change", reduced);
     canvas.removeEventListener("keydown", keyboard); canvas.removeEventListener("webglcontextlost", contextLost);
     controls.removeEventListener("start", start); controls.removeEventListener("end", end); controls.removeEventListener("change", requestRender);
     controls.dispose(); geometry.dispose(); rimGeometry.dispose(); markerGeometry.dispose();
+    journey?.dispose();
+    destination?.dispose();
     surface.dispose(); rim.dispose(); markerMaterial.dispose(); textures.forEach(texture => texture.dispose());
     renderer.dispose(); canvas.remove();
   }
