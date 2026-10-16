@@ -2,7 +2,9 @@
 
 import { site } from "@/data/site";
 import Image from "next/image";
-import Squares from "@/components/ui/Squares";
+import { useState } from "react";
+import HeroBackground from "@/components/flight-radar/HeroBackground";
+import backgroundStyles from "@/components/flight-radar/HeroBackground.module.css";
 import TextType from "@/components/ui/TextType";
 
 function LinkedInIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -38,20 +40,15 @@ function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export default function Hero() {
+export default function Hero({ background }: { background?: React.ReactNode }) {
+  const [paused, setPaused] = useState(false);
   return (
     <section
       className="relative min-h-[90vh] flex items-center overflow-hidden"
       style={{ backgroundColor: "var(--hero-bg)" }}
     >
       <div className="absolute inset-0 z-0">
-        <Squares
-          direction="diagonal"
-          speed={0.3}
-          squareSize={60}
-          borderColor="var(--hero-grid)"
-          hoverFillColor="var(--hero-grid-hover)"
-        />
+        {background ?? <HeroBackground paused={paused} />}
       </div>
 
       <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_top,rgba(30,64,175,0.25),transparent_60%)]" />
@@ -59,7 +56,7 @@ export default function Hero() {
       <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-24">
         <div className="flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
 
-          <div className="max-w-2xl space-y-6">
+          <div data-hero-copy className="max-w-2xl space-y-6">
             <h1 className="text-4xl font-semibold tracking-tight sm:text-4xl lg:text-5xl" style={{ color: "var(--foreground)" }}>
               Hi there!
             </h1>
@@ -129,7 +126,7 @@ export default function Hero() {
           </div>
 
           {/* IMAGE + PIXEL CHARACTER */}
-          <div className="flex flex-row items-end gap-4 w-full max-w-md">
+          <div data-hero-portrait className="flex flex-row items-end gap-4 w-full max-w-md">
 
             {/* Main photo — unchanged */}
             <div
@@ -160,6 +157,9 @@ export default function Hero() {
 
         </div>
       </div>
+      {background === undefined && <button data-hero-radar-control className={backgroundStyles.pause} aria-label={paused ? "Resume background animation" : "Pause background animation"} aria-pressed={paused} onClick={() => setPaused(value => !value)}>
+        {paused ? "Resume animation" : "Pause animation"}
+      </button>}
     </section>
   );
 }

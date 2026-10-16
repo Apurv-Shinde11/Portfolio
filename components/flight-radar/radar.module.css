@@ -1,0 +1,32 @@
+.radar { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; color: #8adced; --traffic-amber: #cfaa69; --route-color: #559fb7; --trail-color: #9de6f2; --waypoint-color: #85b4c5; }
+:global([data-theme="light"]) .radar { color: #185e75; --traffic-amber: #88652c; --route-color: #356f89; --trail-color: #15566e; --waypoint-color: #4d7485; }
+.planned { fill: none; stroke: var(--route-color); stroke-width: .85; stroke-dasharray: 4 8; opacity: .26; }
+.trail { fill: none; stroke: var(--trail-color); stroke-width: 1.2; stroke-linecap: round; }
+.flightLabel { fill: var(--foreground); font: 10px ui-monospace, monospace; }
+.flightDetail { fill: var(--foreground-muted); font-size: 9px; }
+.waypoint { fill: var(--hero-bg); stroke: var(--waypoint-color); stroke-width: 1.2; opacity: .65; }
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 16px 24px; border-bottom: 1px solid var(--card-border); font-size: 12px; color: var(--foreground-muted); }
+.toolbar button { padding: 8px 12px; border: 1px solid var(--card-border); border-radius: 8px; color: var(--foreground); margin-right: 6px; cursor: pointer; }
+.toolbar button[aria-pressed="true"] { background: var(--social-hover-bg); border-color: var(--link-accent); }
+.toolbar button:focus-visible { outline: 2px solid var(--link-accent); outline-offset: 3px; }
+.toolbar button:disabled { opacity: .4; cursor: default; }
+.motionNote { font-size: 11px; }
+.legend { max-width: 1152px; margin: auto; padding: 32px 24px 48px; }
+.legend h2 { font-size: 20px; margin-bottom: 12px; }
+.legend p { color: var(--foreground-muted); font-size: 14px; }
+.iconList { display: flex; flex-wrap: wrap; gap: 32px; margin-top: 28px; }
+.iconList figure { display: flex; align-items: center; gap: 12px; color: var(--link-accent); }
+.iconList figcaption { font-size: 12px; color: var(--foreground-muted); }
+.legend h3 { margin-top: 32px; font-size: 15px; }
+.enlarged { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 24px; margin-top: 24px; }
+.enlarged figure { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 24px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; color: var(--link-accent); }
+.enlarged figcaption { font-size: 12px; color: var(--foreground-muted); }
+.key { display: flex; flex-wrap: wrap; gap: 24px; margin: 24px 0; }
+.key span { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--foreground-muted); }
+.key svg { width: 70px; height: 16px; --route-color: var(--link-accent); --trail-color: var(--link-accent); --waypoint-color: var(--link-accent); }
+.labRow { margin-top: 24px; padding: 20px 0; border-top: 1px solid var(--card-border); }
+.labRow h3 { margin: 0 0 16px; }
+.labSamples { display: grid; grid-template-columns: repeat(auto-fit,minmax(112px,1fr)); gap: 12px; align-items: end; margin: 16px 0; }
+.labSamples figure { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--link-accent); }
+.labSamples figcaption { font-size: 11px; color: var(--foreground-muted); }
+.labSamples svg { max-width: 100%; height: auto; }
